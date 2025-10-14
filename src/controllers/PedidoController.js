@@ -4,8 +4,10 @@ export const cadastrarPedido = async (req, res) => {
   try {
     const pedido = new Pedido(req.body);
     const pedidoCadastrado = await pedido.save();
-    await pedidoCadastrado.populate("equipe").populate("veiculo");
-    res.status(201).json(pedidoCadastrado);
+    const pedidoPopulado = await Pedido.findById(pedidoCadastrado._id)
+      .populate("veiculo")
+      .populate("equipe");
+    res.status(201).json(pedidoPopulado);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

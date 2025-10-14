@@ -4,6 +4,7 @@ const funcionarioSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
+    unique: true,
   },
   equipe: {
     type: mongoose.Schema.Types.ObjectId,
@@ -13,6 +14,7 @@ const funcionarioSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   senha: {
     type: String,

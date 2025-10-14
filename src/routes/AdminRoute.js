@@ -7,7 +7,6 @@ import {
 const router = express.Router();
 
 router.post("/", cadastrarAdmin);
-
 router.get("/", listarAdmins);
 
 export default router;

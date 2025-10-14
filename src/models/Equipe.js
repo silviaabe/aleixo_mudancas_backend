@@ -4,6 +4,7 @@ const equipeSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 

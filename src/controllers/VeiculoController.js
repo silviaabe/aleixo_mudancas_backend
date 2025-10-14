@@ -1,6 +1,6 @@
 import Veiculo from "../models/Veiculo.js";
 
-export const cadastarVeiculo = async (req, res) => {
+export const cadastrarVeiculo = async (req, res) => {
   try {
     const veiculo = new Veiculo(req.body);
     const veiculoCadastrado = await veiculo.save();

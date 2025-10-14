@@ -4,6 +4,7 @@ const veiculoSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 

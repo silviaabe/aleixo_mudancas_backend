@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const pedidoSchema = new mongoose.Schema({
   data_entrega: {
-    type: Date,
+    type: String,
     required: true,
   },
   data_retirada: {
-    type: Date,
+    type: String,
     required: true,
   },
   equipe: {
@@ -21,7 +21,6 @@ const pedidoSchema = new mongoose.Schema({
   },
   descricao: {
     type: String,
-    required: true,
   },
 });
 

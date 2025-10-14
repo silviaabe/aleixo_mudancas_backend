@@ -4,6 +4,7 @@ const autonomoSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 
