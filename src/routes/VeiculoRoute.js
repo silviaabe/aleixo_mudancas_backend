@@ -2,7 +2,7 @@ import express from "express";
 import {
   cadastrarVeiculo,
   listarVeiculos,
-} from "../controllers/veiculoController.js";
+} from "../controllers/VeiculoController.js";
 
 const router = express.Router();
 

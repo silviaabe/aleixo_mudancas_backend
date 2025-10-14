@@ -2,7 +2,7 @@ import express from "express";
 import {
   cadastrarPedido,
   listarPedidos,
-} from "../controllers/pedidoController.js";
+} from "../controllers/PedidoController.js";
 
 const router = express.Router();
 

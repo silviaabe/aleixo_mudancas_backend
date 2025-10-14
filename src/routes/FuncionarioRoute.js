@@ -2,7 +2,7 @@ import express from "express";
 import {
   cadastrarFuncionario,
   listarFuncionarios,
-} from "../controllers/funcionarioController.js";
+} from "../controllers/FuncionarioController.js";
 
 const router = express.Router();
 
