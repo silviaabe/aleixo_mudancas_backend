@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const pedidoSchema = new mongoose.Schema({
+  titulo: {
+    type: String,
+    required: true,
+  },
+
   data_entrega: {
     type: String,
     required: true,
@@ -21,6 +26,12 @@ const pedidoSchema = new mongoose.Schema({
   },
   descricao: {
     type: String,
+  },
+
+  status: {
+    type: String,
+    enum: ["em-andamento", "inativado"],
+    default: "em-andamento",
   },
 });
 

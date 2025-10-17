@@ -21,3 +21,93 @@ export const listarPedidos = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const editarPedido = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const dadosAtualizados = req.body;
+
+    const pedidoExistente = await Pedido.findById(id);
+    if (!pedidoExistente) {
+      return res.status(404).json({ message: error.message });
+    }
+
+    if (
+      dadosAtualizados.numeroPedido &&
+      dadosAtualizados.numeroPedido !== pedidoExistente.numeroPedido
+    ) {
+      const numeroPedidoExistente = await Pedido.findOne({
+        numeroPedido: dadosAtualizados.numeroPedido,
+        _id: { $ne: id },
+      });
+      if (numeroPedidoExistente) {
+        return res.status(400).json({ message: error.message });
+      }
+    }
+
+    const pedidoAtualizado = await Pedido.findByIdAndUpdate(
+      id,
+      { $set: dadosAtualizados },
+      {
+        new: true,
+        runValidators: true,
+      }
+    )
+      .populate("veiculo")
+      .populate("equipe");
+
+    res.json(pedidoAtualizado);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const buscarPedidoPorId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pedido = await Pedido.findById(id)
+      .populate("veiculo")
+      .populate("equipe");
+    res.json(pedido);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const finalizarPedido = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const pedidoFinalizado = await Pedido.findByIdAndUpdate(
+      id,
+      { status: "inativado" },
+      {
+        new: true,
+      }
+    )
+      .populate("veiculo")
+      .populate("equipe");
+
+    res.json(pedidoFinalizado);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const reativarPedido = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const pedidoReaberto = await Pedido.findByIdAndUpdate(
+      id,
+      { status: "em-andamento" },
+      { new: true }
+    )
+      .populate("veiculo")
+      .populate("equipe");
+
+    res.json(pedidoReaberto);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

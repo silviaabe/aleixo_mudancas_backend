@@ -6,6 +6,12 @@ const equipeSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+
+  status: {
+    type: String,
+    enum: ["ativo", "inativado"],
+    default: "ativo",
+  },
 });
 
 const Equipe = mongoose.model("Equipe", equipeSchema);

@@ -6,6 +6,12 @@ const veiculoSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+
+  status: {
+    type: String,
+    enum: ["ativo", "inativado"],
+    default: "ativo",
+  },
 });
 
 const Veiculo = mongoose.model("Veiculo", veiculoSchema);

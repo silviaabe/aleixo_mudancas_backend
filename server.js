@@ -13,7 +13,7 @@ import pedidosRoutes from "./src/routes/PedidoRoute.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -39,9 +39,3 @@ const connectDB = async () => {
 };
 
 connectDB();
-
-app.get("/", (req, res) => {
-  res.send("Servidor conectado ao MongoDB remoto!");
-});
-
-app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));

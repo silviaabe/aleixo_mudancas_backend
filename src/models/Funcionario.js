@@ -20,6 +20,12 @@ const funcionarioSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  status: {
+    type: String,
+    enum: ["ativo", "inativado"],
+    default: "ativo",
+  },
 });
 
 const Funcionario = mongoose.model("Funcionario", funcionarioSchema);

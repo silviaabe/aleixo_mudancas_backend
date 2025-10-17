@@ -18,6 +18,12 @@ const dataSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+
+  status: {
+    type: String,
+    enum: ["ativo", "inativado"],
+    default: "ativo",
+  },
 });
 
 const Data = mongoose.model("Data", dataSchema);
