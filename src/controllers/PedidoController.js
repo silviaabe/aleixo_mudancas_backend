@@ -74,11 +74,11 @@ export const buscarPedidoPorId = async (req, res) => {
   }
 };
 
-export const finalizarPedido = async (req, res) => {
+export const inativarPedido = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const pedidoFinalizado = await Pedido.findByIdAndUpdate(
+    const pedidoInativado = await Pedido.findByIdAndUpdate(
       id,
       { status: "inativado" },
       {
@@ -88,7 +88,7 @@ export const finalizarPedido = async (req, res) => {
       .populate("veiculo")
       .populate("equipe");
 
-    res.json(pedidoFinalizado);
+    res.json(pedidoInativado);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -109,5 +109,22 @@ export const reativarPedido = async (req, res) => {
     res.json(pedidoReaberto);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+
+export const deletarPedido = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const pedidoExistente = await Pedido.findById(id);
+    if (!pedidoExistente) {
+      return res.status(404).json({ message: "Pedido não encontrado" });
+    }
+
+    await Pedido.findByIdAndDelete(id);
+
+    res.json({ message: "Pedido deletado permanentemente com sucesso" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

@@ -5,16 +5,24 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  hora: {
+
+  diaria: {
     type: String,
     required: true,
   },
+
   autonomo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Autonomo",
     required: true,
   },
+
   pernoite: {
+    type: Boolean,
+    required: true,
+  },
+
+  extra: {
     type: Boolean,
     required: true,
   },
