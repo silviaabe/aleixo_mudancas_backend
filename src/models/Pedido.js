@@ -8,7 +8,7 @@ const pedidoSchema = new mongoose.Schema({
 
   data_embalagem: {
     type: String,
-    required: true,
+    required: false,
   },
 
   data_retirada: {
@@ -21,23 +21,21 @@ const pedidoSchema = new mongoose.Schema({
     required: true,
   },
 
-  equipe: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Equipe",
-    required: true,
-  },
+  funcionario: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Funcionario",
+      required: false,
+    },
+  ],
 
-  funcionario: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Funcionario",
-    required: true,
-  },
-
-  autonomo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Autonomo",
-    required: true,
-  },
+  autonomo: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Autonomo",
+      required: false,
+    },
+  ],
 
   veiculo: {
     type: mongoose.Schema.Types.ObjectId,
