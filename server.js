@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import adminRoutes from "./src/routes/AdminRoute.js";
-import autonomoRoutes from "./src/routes/AutonomRoute.js";
+import autonomoRoutes from "./src/routes/AutonomoRoute.js";
 import dadosAutonomoRoutes from "./src/routes/DadosAutonomoRoute.js";
 import dadosFuncionarioRoutes from "./src/routes/DadosFuncionarioRoute.js";
 import equipeRoutes from "./src/routes/EquipeRoute.js";

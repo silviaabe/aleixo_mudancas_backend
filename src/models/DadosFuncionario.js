@@ -9,22 +9,27 @@ const dadosFuncionarioSchema = new mongoose.Schema({
 
   pernoite: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 
-  dataPernoite: {
+  data_pernoite: {
     type: String,
-    required: true,
+    required: false,
   },
 
   escada: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 
-  dataEscada: {
+  data_escada: {
     type: String,
-    required: true,
+    required: false,
+  },
+
+  pagar: {
+    type: String,
+    required: false,
   },
 });
 

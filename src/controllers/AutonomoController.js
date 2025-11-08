@@ -113,3 +113,20 @@ export const reativarAutonomo = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deletarAutonomo = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const dadosExistentes = await Autonomo.findById(id);
+    if (!dadosExistentes) {
+      return res.status(404).json({ message: "Dados não encontrados" });
+    }
+
+    await Autonomo.findByIdAndDelete(id);
+
+    res.json({ message: "Autonomo deletado permanentemente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

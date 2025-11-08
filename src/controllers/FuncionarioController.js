@@ -114,3 +114,20 @@ export const reativarFuncionario = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deletarFuncionario = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const dadosExistentes = await Funcionario.findById(id);
+    if (!dadosExistentes) {
+      return res.status(404).json({ message: "Dados não encontrados" });
+    }
+
+    await Funcionario.findByIdAndDelete(id);
+
+    res.json({ message: "Funcionario deletado permanentemente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -6,6 +6,7 @@ import {
   reativarVeiculo,
   buscarVeiculoPorId,
   editarVeiculo,
+  deletarVeiculo,
 } from "../controllers/VeiculoController.js";
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.patch("/:id/inativar", inativarVeiculo);
 router.patch("/:id/reativar", reativarVeiculo);
 router.get("/:id", buscarVeiculoPorId);
 router.put("/:id", editarVeiculo);
+router.delete("/:id", deletarVeiculo);
 
 export default router;

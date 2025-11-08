@@ -2,6 +2,7 @@ import express from "express";
 import {
   buscarEquipePorId,
   cadastrarEquipe,
+  deletarEquipe,
   editarEquipe,
   inativarEquipe,
   listarEquipes,
@@ -16,5 +17,6 @@ router.patch("/:id/inativar", inativarEquipe);
 router.patch("/:id/reativar", reativarEquipe);
 router.get("/:id", buscarEquipePorId);
 router.put("/:id", editarEquipe);
+router.delete("/:id", deletarEquipe);
 
 export default router;

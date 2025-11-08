@@ -100,3 +100,20 @@ export const reativarEquipe = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deletarEquipe = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const dadosExistentes = await Equipe.findById(id);
+    if (!dadosExistentes) {
+      return res.status(404).json({ message: "Dados não encontrados" });
+    }
+
+    await Equipe.findByIdAndDelete(id);
+
+    res.json({ message: "Equipe deletado permanentemente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

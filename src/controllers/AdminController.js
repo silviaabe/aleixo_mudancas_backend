@@ -113,3 +113,20 @@ export const reativarAdmin = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deletarAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const dadosExistentes = await Admin.findById(id);
+    if (!dadosExistentes) {
+      return res.status(404).json({ message: "Admin não encontrados" });
+    }
+
+    await Admin.findByIdAndDelete(id);
+
+    res.json({ message: "Admin deletado permanentemente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

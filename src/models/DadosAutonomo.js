@@ -9,19 +9,25 @@ const dadosAutonomoSchema = new mongoose.Schema({
 
   diaria: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 
-  dataDiaria: {
+  data_diaria: {
     type: String,
     required: false,
   },
+
   escada: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 
-  dataEscada: {
+  data_escada: {
+    type: String,
+    required: false,
+  },
+
+  pagar: {
     type: String,
     required: false,
   },

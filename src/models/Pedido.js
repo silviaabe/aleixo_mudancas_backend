@@ -21,6 +21,12 @@ const pedidoSchema = new mongoose.Schema({
     required: true,
   },
 
+  equipe: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Equipe",
+    required: false,
+  },
+
   funcionario: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -45,6 +51,7 @@ const pedidoSchema = new mongoose.Schema({
 
   descricao: {
     type: String,
+    required: false,
   },
 
   status: {

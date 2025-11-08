@@ -5,6 +5,7 @@ export const cadastrarPedido = async (req, res) => {
     const pedido = new Pedido(req.body);
     const pedidoCadastrado = await pedido.save();
     const pedidoPopulado = await Pedido.findById(pedidoCadastrado._id)
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
@@ -17,6 +18,7 @@ export const cadastrarPedido = async (req, res) => {
 export const listarPedidos = async (req, res) => {
   try {
     const pedidos = await Pedido.find()
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
@@ -57,6 +59,7 @@ export const editarPedido = async (req, res) => {
         runValidators: true,
       }
     )
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
@@ -71,6 +74,7 @@ export const buscarPedidoPorId = async (req, res) => {
   try {
     const { id } = req.params;
     const pedido = await Pedido.findById(id)
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
@@ -91,6 +95,7 @@ export const inativarPedido = async (req, res) => {
         new: true,
       }
     )
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
@@ -110,6 +115,7 @@ export const reativarPedido = async (req, res) => {
       { status: "em-andamento" },
       { new: true }
     )
+      .populate("equipe")
       .populate("veiculo")
       .populate("funcionario")
       .populate("autonomo");
