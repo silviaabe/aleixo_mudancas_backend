@@ -1,3 +1,4 @@
+import Admin from "./src/models/Admin.js";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -14,8 +15,6 @@ import pedidosRoutes from "./src/routes/PedidoRoute.js";
 dotenv.config();
 
 const app = express();
-
-import Admin from "./src/models/adminModel.js";
 
 app.get("/setup-demo", async (req, res) => {
   try {
