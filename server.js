@@ -16,6 +16,7 @@ dotenv.config();
 const app = express();
 
 import Admin from "./src/models/adminModel.js";
+
 app.get("/setup-demo", async (req, res) => {
   try {
     const email = "demo@demo.com";
@@ -36,6 +37,7 @@ app.get("/setup-demo", async (req, res) => {
     res.status(500).send("Erro ao criar usuário demo");
   }
 });
+
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
