@@ -1,4 +1,3 @@
-import Admin from "./src/models/Admin.js";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -15,6 +14,28 @@ import pedidosRoutes from "./src/routes/PedidoRoute.js";
 dotenv.config();
 
 const app = express();
+
+import Admin from "./src/models/adminModel.js";
+app.get("/setup-demo", async (req, res) => {
+  try {
+    const email = "demo@demo.com";
+    const existing = await Admin.findOne({ email });
+    if (existing) return res.status(200).send("Usuário demo já existe");
+
+    const demo = new Admin({
+      nome: "Demo Admin",
+      email: "demo@demo.com",
+      senha: "demo123",
+      status: "ativo" 
+    });
+
+    await demo.save();
+    res.send("Usuário demo criado: demo@demo.com / demo123");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erro ao criar usuário demo");
+  }
+});
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -27,27 +48,6 @@ app.use("/api/equipes", equipeRoutes);
 app.use("/api/funcionarios", funcionarioRoutes);
 app.use("/api/pedidos", pedidosRoutes);
 app.use("/api/veiculos", veiculoRoutes);
-
-app.get("/setup-demo", async (req, res) => {
-  try {
-    const email = "demo@demo.com";
-    const existing = await Admin.findOne({ email });
-    if (existing) return res.status(200).send("Demo user already exists");
-
-    // Ajuste conforme seu model: se tem hashing via pre-save, use o model normalmente
-    const demo = new Admin({
-      name: "Demo Admin",
-      email,
-      password: "demo123" // se seu model hashear no save, tudo bem; se não, adeque
-    });
-
-    await demo.save();
-    res.send("Demo user created: demo@demo.com / demo123");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error creating demo user");
-  }
-});
 
 const connectDB = async () => {
   try {
