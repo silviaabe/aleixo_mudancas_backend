@@ -1,4 +1,3 @@
-import Admin from "./src/models/adminModel.js";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -16,6 +15,7 @@ dotenv.config();
 
 const app = express();
 
+import Admin from "./src/models/adminModel.js";
 app.get("/setup-demo", async (req, res) => {
   try {
     const email = "demo@demo.com";
